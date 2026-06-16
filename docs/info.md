@@ -9,13 +9,15 @@ You can also include images in this folder and reference them in the markdown. E
 
 ## How it works
 
-placeholder changes for now, just setting up for onboarding
+Placeholder changes for now, just setting up for onboarding
 Explain how your project works
 
 ## How to test
 
+Placeholder testing instructions
 Explain how to use your project
 
 ## External hardware
 
+Placeholder external hardware
 List external hardware used in your project (e.g. PMOD, LED display, etc), if any
