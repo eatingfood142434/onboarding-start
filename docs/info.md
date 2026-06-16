@@ -9,6 +9,7 @@ You can also include images in this folder and reference them in the markdown. E
 
 ## How it works
 
+placeholder changes for now, just setting up for onboarding
 Explain how your project works
 
 ## How to test
