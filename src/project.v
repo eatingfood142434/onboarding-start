@@ -6,8 +6,6 @@
 `default_nettype none
 
 module tt_um_uwasic_onboarding_lukas_li (
-    assign uio_oe = 8'hFF;
-    
     input  wire [7:0] ui_in,    // Dedicated inputs
     output wire [7:0] uo_out,   // Dedicated outputs
     input  wire [7:0] uio_in,   // IOs: Input path
@@ -17,6 +15,23 @@ module tt_um_uwasic_onboarding_lukas_li (
     input  wire       clk,      // clock
     input  wire       rst_n     // reset_n - low to reset
 );
+  assign uio_oe = 8'hFF;
+  wire [7:0] en_reg_out_7_0;
+  wire [7:0] en_reg_out_15_8;
+  wire [7:0] en_reg_pwm_7_0;
+  wire [7:0] en_reg_pwm_15_8;
+  wire [7:0] pwm_duty_cycle;
+
+  spi_peripheral spi_peripheral_inst (
+    .clk(clk),
+    .rst_n(rst_n),
+    .ui_in(ui_in[2:0]),
+    .en_reg_out_7_0(en_reg_out_7_0),
+    .en_reg_out_15_8(en_reg_out_15_8),
+    .en_reg_pwm_7_0(en_reg_pwm_7_0),
+    .en_reg_pwm_15_8(en_reg_pwm_15_8),
+    .pwm_duty_cycle(pwm_duty_cycle)
+  );
 
   // Instantiate the PWM module
   pwm_peripheral pwm_peripheral_inst (
