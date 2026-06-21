@@ -9,15 +9,12 @@ You can also include images in this folder and reference them in the markdown. E
 
 ## How it works
 
-Placeholder changes for now, just setting up for onboarding
-Explain how your project works
+This project describes an SPI peripheral module which is used to control a PWM module. It takes in COPI, nCS, and SCLK from an SPI controller. The COPI is then read in 16 bit chunks via a shift register, which is then used to communicate to the PWM module and control things like which pins are active, which pins have PWM mode on, and the duty cycle of the PWM signal.
 
 ## How to test
 
-Placeholder testing instructions
-Explain how to use your project
+Cocotb is used for testing. Install Icarus Verilog and Cocotb, then run make -B in the /test folder to run the tests in test.py.
 
 ## External hardware
 
-Placeholder external hardware
-List external hardware used in your project (e.g. PMOD, LED display, etc), if any
+No external hardware is used
