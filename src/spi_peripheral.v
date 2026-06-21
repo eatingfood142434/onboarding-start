@@ -13,7 +13,7 @@ module spi_peripheral (
     wire raw_copi = ui_in[1];
     wire raw_ncs = ui_in[2];
     wire raw_sclk = ui_in[0];
-    
+
     // for reading in SPI data and making sure its stable with 2 FFs
     reg [1:0] sclk_sync;
     reg [1:0] copi_sync;
@@ -66,6 +66,8 @@ module spi_peripheral (
     end
 
     // taking the 16 bit input signal and using it to update the registers
+    // no transaction_ready signal since my bit_count only goes up to 15, so I'm just shifting shift_reg and using that when bit_count is 15
+    // seems to work but kinda fishy(?) idk
     wire [15:0] input_signal = {shift_reg[14:0], copi_reg};
 
     always @(posedge clk or negedge rst_n) begin
