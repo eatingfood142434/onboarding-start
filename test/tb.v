@@ -22,6 +22,8 @@ module tb ();
   wire [7:0] uo_out;
   wire [7:0] uio_out;
   wire [7:0] uio_oe;
+  // for testing purposes since Icarus cannot edge-trigger on uo_out[0]
+  wire uo_out_0 = uo_out[0];
 `ifdef GL_TEST
   wire VPWR = 1'b1;
   wire VGND = 1'b0;
