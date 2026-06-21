@@ -17,4 +17,4 @@ Cocotb is used for testing. Install Icarus Verilog and Cocotb, then run make -B 
 
 ## External hardware
 
-No external hardware is used
+No external hardware is used.
