@@ -48,27 +48,24 @@ module spi_peripheral (
 
     wire sclk_edge = sclk_reg & ~sclk_delayed;
 
-    // for reading in the 16 bit data
-    reg [15:0] shift_reg;
+    // Hold 15 bits; the 16th is copi_reg when bit_count == 15 (see input_signal)
+    reg [14:0] shift_reg;
     reg [3:0] bit_count;
     
     always @(posedge clk or negedge rst_n) begin
         if (!rst_n) begin
-            shift_reg <= 16'h0000;
+            shift_reg <= 15'h0000;
             bit_count <= 4'h0;
         end
         else if (ncs_reg) bit_count <= 4'h0;
         else if (sclk_edge) begin
-            shift_reg <= {shift_reg[14:0], copi_reg};
-            if (bit_count == 4'hF) bit_count <= 4'h0;
-            else bit_count <= bit_count + 1;
+            shift_reg <= {shift_reg[13:0], copi_reg};
+            bit_count <= bit_count + 1;
         end
     end
 
     // taking the 16 bit input signal and using it to update the registers
-    // no transaction_ready signal since my bit_count only goes up to 15, so I'm just shifting shift_reg and using that when bit_count is 15
-    // seems to work but kinda fishy(?) idk
-    wire [15:0] input_signal = {shift_reg[14:0], copi_reg};
+    wire [15:0] input_signal = {shift_reg, copi_reg};
 
     always @(posedge clk or negedge rst_n) begin
         if (!rst_n) begin
